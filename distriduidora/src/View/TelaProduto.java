@@ -179,8 +179,7 @@ public class TelaProduto extends javax.swing.JInternalFrame {
              produtos = produtoController.listarProdutos();
              
              produtos.forEach(item -> {
-                //System.out.println(item.getNome());
-                
+                //System.out.println(item.getNome());       
                 model.addRow(new Object[] 
                     { 
                        //retorna os dados da tabela do BD, cada campo e um coluna.
@@ -235,16 +234,14 @@ public class TelaProduto extends javax.swing.JInternalFrame {
                    
                 }
             
-           // result = produtoController.adicionarProduto(txtProdutoNome.getText(), txtProdutoQuant.getText(), txtProdutoPreco.getText());
-           
-            
+           // result = produtoController.adicionarProduto(txtProdutoNome.getText(), txtProdutoQuant.getText(), txtProdutoPreco.getText());   
         }
     }//GEN-LAST:event_btnProdutoCriarActionPerformed
 
     private void btnProdutoAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutoAtualizarActionPerformed
          //Produto produto = new Produto();
          
-         int result = 0;
+        int result = 0;
 
         if(txtProdutoNome.getText().isEmpty() || txtProdutoQuant.getText().isEmpty() || txtProdutoPreco.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Preencha todos os campos");
@@ -252,73 +249,53 @@ public class TelaProduto extends javax.swing.JInternalFrame {
             String textoIdInt = txtProdutoId.getText();
             String textoQuantInt = txtProdutoQuant.getText();
             String textoDouble = txtProdutoPreco.getText();
-            
-            
-             try {
-                    produtoController = new ProdutoController();
-                    int numeroquantidadeInt = Integer.parseInt(textoQuantInt);
-                    int idInt = Integer.parseInt(textoIdInt);
-                    double numeroPrecoDouble = Double.parseDouble(textoDouble);
-                     
-                    result = produtoController.alterarProduto(idInt, txtProdutoNome.getText(), numeroquantidadeInt, numeroPrecoDouble);
-                    
-                    if(result > 0){
-                        JOptionPane.showMessageDialog(null, "Produto atualizado com sucesso");
-                        txtProdutoId.setText(null);
-                        txtProdutoNome.setText(null);
-                        txtProdutoPreco.setText(null);
-                        txtProdutoQuant.setText(null);
-                        CarregarTabela();
-                        
-                    }
-             
-                  
-                    
-                } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(null, "Preencha com um número.");
-                   
-                }
-            
-            
-        }  
+     
+            try {
+                   produtoController = new ProdutoController();
+                   int numeroquantidadeInt = Integer.parseInt(textoQuantInt);
+                   int idInt = Integer.parseInt(textoIdInt);
+                   double numeroPrecoDouble = Double.parseDouble(textoDouble);
 
+                   result = produtoController.alterarProduto(idInt, txtProdutoNome.getText(), numeroquantidadeInt, numeroPrecoDouble);
+
+                   if(result > 0){
+                       JOptionPane.showMessageDialog(null, "Produto atualizado com sucesso");
+                       txtProdutoId.setText(null);
+                       txtProdutoNome.setText(null);
+                       txtProdutoPreco.setText(null);
+                       txtProdutoQuant.setText(null);
+                       CarregarTabela();     
+                   }          
+               } catch (NumberFormatException ex) {
+                   JOptionPane.showMessageDialog(null, "Preencha com um número.");    
+               } 
+        }  
     }//GEN-LAST:event_btnProdutoAtualizarActionPerformed
 
     private void btnProdutoDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutoDeleteActionPerformed
-         int linhaSelecionada = tbProduto.getSelectedRow();
+        int linhaSelecionada = tbProduto.getSelectedRow();
 
         if (linhaSelecionada != -1) {
-       
             TableModel dadosTabela = tbProduto.getModel();
-            
 
             String id_produto = dadosTabela.getValueAt(linhaSelecionada, 0).toString();
-            
-            
-            
-            
+
             try {
                 int idProduto = Integer.parseInt(id_produto);
                 produtoController.deletarProduto(idProduto);
- 
+
                 txtProdutoId.setText(null);
                 txtProdutoNome.setText(null);
                 txtProdutoQuant.setText(null);
                 txtProdutoPreco.setText(null);
 
                 CarregarTabela();   
-                
-                
+        
             } catch (Exception e) {
                 
                 
-            }
-            
-            
-            
-            
+            }          
         }  
-   
     }//GEN-LAST:event_btnProdutoDeleteActionPerformed
 
     

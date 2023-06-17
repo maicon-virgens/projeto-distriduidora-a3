@@ -27,6 +27,7 @@ public class Conexao {
     
     private ArrayList<Usuario> usuarios = new ArrayList<>();
     private ArrayList<Produto> produtos = new ArrayList<>();
+    private ArrayList<Cliente> cliente = new ArrayList<>();
    
     
     private static final String URL = "jdbc:mysql://localhost:3306/distribuidora";
@@ -62,6 +63,8 @@ public class Conexao {
             System.out.println("Erro ao fechar conexão com o banco de dados: " + e.getMessage());
         }
     }
+    
+     // -----------------------------------------------------------------------------
     
      //USUARIO ADICIONAR
     public int adicionarUsuario(Usuario usuario){
@@ -206,11 +209,7 @@ public class Conexao {
      
          //USUARIO ALTERAR
      public int AlterarProduto(int id_Produto, String nome, int quantidade, double preco){
-         
-         System.out.println("id: " + id_Produto);
-         System.out.println("nome: " + nome);
-         System.out.println("quan: " + quantidade);
-         System.out.println("preco: " + preco);
+
          
         int result = 0;
          
@@ -249,6 +248,112 @@ public class Conexao {
            System.out.println("Erro ao excluir Produto: " + e.getMessage());
         }
     }
+    
+     // -----------------------------------------------------------------------------
+    
+     //CLIENTE ADICIONAR
+    public int adicionarCliente(Cliente cliente){
+        int result = 0;
+
+        try {
+           String query = "INSERT INTO cliente (nome, cnpj, telefone, endereco, email) VALUES (?, ?, ?, ?, ?)";
+           PreparedStatement preparedStatement = conexao.prepareStatement(query);
+           
+           preparedStatement.setString(1, cliente.getNome());
+           preparedStatement.setString(2, cliente.getCnpj());
+           preparedStatement.setString(3, cliente.getTelefone());
+           preparedStatement.setString(4, cliente.getEndereco());
+           preparedStatement.setString(5, cliente.getEmail());
+           
+           
+           result = preparedStatement.executeUpdate();
+
+       } catch (SQLException e) {
+           e.printStackTrace();
+       }
+        return result;
+    }
+    
+        //CLIENTE LISTAR 
+     public List<Cliente> listarCliente() throws SQLException {
+        List<Cliente> clientes = new ArrayList<>();
+        String query = "SELECT * FROM cliente"; // Query SQL para buscar os usuários
+        
+        try {
+            PreparedStatement statement = conexao.prepareStatement(query);
+            ResultSet resultSet = statement.executeQuery();
+            
+            while (resultSet.next()) {
+                
+                //String nome, String cnpj, String telefone, String endereco, String email
+                 
+                int id = resultSet.getInt("id_cliente");
+                String nome = resultSet.getString("nome");
+                String cnpj = resultSet.getString("cnpj");
+                String telefone = resultSet.getString("telefone");
+                String endereco = resultSet.getString("endereco");
+                String email = resultSet.getString("email");
+                
+                
+                //Criar um objeto Usuario e adicioná-lo à lista
+                Cliente cliente = new Cliente(id, nome, cnpj, telefone, endereco, email);
+                clientes.add(cliente);
+              
+            }
+
+       } catch (SQLException e) {
+           e.printStackTrace();
+       }
+ 
+        return clientes;
+    }
+     
+           //Clinete ALTERAR
+     public int AlterarCliente(int id_cliente, String nome, String cnpj, String telefone, String endereco, String email){
+         
+         
+        int result = 0;
+         
+         String query = "UPDATE cliente SET nome = ?, cnpj = ?, telefone = ?, endereco = ?, email = ? WHERE id_cliente = ?";
+
+        try {
+            PreparedStatement preparedStatement = conexao.prepareStatement(query);
+            
+            preparedStatement.setString(1, nome);
+            preparedStatement.setString(2, cnpj);
+            preparedStatement.setString(3, telefone);
+            preparedStatement.setString(4, endereco);
+            preparedStatement.setString(5, email);
+            preparedStatement.setInt(6, id_cliente);
+
+            result = preparedStatement.executeUpdate();
+
+            
+        } catch (SQLException e) {
+            System.out.println("Erro ao atualizar Produto: " + e.getMessage());
+        }
+        
+        return result;
+ 
+     }
+     
+      //USUARIO  EXCLUIR
+     public void excluirCliente(int id_cliente) {
+        String query = "DELETE FROM cliente WHERE id_cliente = ?";
+
+        try {
+            PreparedStatement preparedStatement = conexao.prepareStatement(query);
+            preparedStatement.setInt(1, id_cliente);
+
+            int linhasAfetadas = preparedStatement.executeUpdate();
+
+            System.out.println("Cliente excluído com sucesso. Linhas afetadas: " + linhasAfetadas);
+        } catch (SQLException e) {
+            System.out.println("Erro ao excluir usuário: " + e.getMessage());
+        }
+    }
+     
+    
 
   
     

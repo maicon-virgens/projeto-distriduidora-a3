@@ -17,6 +17,20 @@ public class Cliente {
     private String endereco;
     private String email;
 
+    public Cliente() {
+    }
+
+    public Cliente(int id_cliente, String nome, String cnpj, String telefone, String endereco, String email) {
+        this.id_cliente = id_cliente;
+        this.nome = nome;
+        this.cnpj = cnpj;
+        this.telefone = telefone;
+        this.endereco = endereco;
+        this.email = email;
+    }
+    
+    
+
     public int getId_cliente() {
         return id_cliente;
     }
