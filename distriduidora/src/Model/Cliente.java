@@ -20,6 +20,11 @@ public class Cliente {
     public Cliente() {
     }
 
+    @Override
+    public String toString() {
+        return this.getNome();
+    }
+
     public Cliente(int id_cliente, String nome, String cnpj, String telefone, String endereco, String email) {
         this.id_cliente = id_cliente;
         this.nome = nome;

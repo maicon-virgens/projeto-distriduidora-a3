@@ -206,9 +206,19 @@ public class TelaCliente extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Preencha todos os campos");
        }else{
            
-           ClienteController cliente = new ClienteController();
+           ClienteController clienteController = new ClienteController();
+           
+            Cliente cliente = new Cliente();
+        
+        
+        
+            cliente.setNome(txtClienteNome.getText());
+            cliente.setCnpj(txtClienteCnpj.getText());
+            cliente.setTelefone(txtClienteTelefone.getText());
+            cliente.setEndereco(txtClienteEndereco.getText());
+            cliente.setEmail(txtClienteEmail.getText());
 
-           result = cliente.adicionarCliente(txtClienteNome.getText(), txtClienteCnpj.getText(), txtClienteTelefone.getText(), txtClienteEndereco.getText(), txtClienteEmail.getText());
+            result = clienteController.adicionarCliente(cliente);
            
            if(result > 0){
                 JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso");
@@ -272,12 +282,20 @@ public class TelaCliente extends javax.swing.JInternalFrame {
             
          try {
            
-           ClienteController cliente = new ClienteController();
+            ClienteController clienteController = new ClienteController();
+            Cliente cliente = new Cliente();
+           
            
             int idInt = Integer.parseInt(textoIdInt);
-            
-           result = cliente.alterarCliente(idInt, txtClienteNome.getText(), txtClienteCnpj.getText(), txtClienteTelefone.getText(), txtClienteEndereco.getText(), txtClienteEmail.getText());
-           
+            cliente.setId_cliente(idInt);
+            cliente.setNome(txtClienteNome.getText());
+            cliente.setCnpj(txtClienteCnpj.getText());
+            cliente.setTelefone(txtClienteTelefone.getText());
+            cliente.setEndereco(txtClienteEndereco.getText());
+            cliente.setEmail(txtClienteEmail.getText());
+
+            result = clienteController.alterarCliente(cliente);
+
  
            if(result > 0){
                 JOptionPane.showMessageDialog(null, "Cliente alterado com sucesso");
@@ -320,7 +338,6 @@ public class TelaCliente extends javax.swing.JInternalFrame {
                 txtClienteEndereco.setText(null);
                 txtClienteEmail.setText(null);
               
-
                 CarregarTabela();   
         
             } catch (Exception e) {

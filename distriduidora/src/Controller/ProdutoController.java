@@ -4,6 +4,7 @@
  */
 package Controller;
 import Dao.Conexao;
+import Dao.ProdutoDoa;
 import Model.Produto;
 import java.sql.SQLException;
 import java.util.List;
@@ -21,32 +22,32 @@ public class ProdutoController {
     
     
     
-    public int  adicionarProduto(String nome, int quantidade, double preco){
+    public int  adicionarProduto(Produto produto){
         
-        Produto produto = new Produto();
+        ProdutoDoa produtoDao = new ProdutoDoa();
+        
         int result = 0;
+       
         
-        produto.setNome(nome);
-        produto.setQuantidade(quantidade);
-        produto.setPreco(preco);
-        
-        result = conexao.adicionarProduto(produto);
+        result = produtoDao.adicionarProduto(produto);
 
         return result;
     }
     
     public List<Produto> listarProdutos() throws SQLException{  
-       return conexao.listarProduto();
+       ProdutoDoa produtoDao = new ProdutoDoa();
+       return produtoDao.listarProduto();
     }
     
-    public int alterarProduto(int  idProduto, String nome, int quantidade, double preco){
-
-      return conexao.AlterarProduto(idProduto, nome, quantidade, preco);
+    public int alterarProduto(Produto produto){
+        ProdutoDoa produtoDao = new ProdutoDoa();
+        return produtoDao.AlterarProduto(produto);
 
     }
     
      public void deletarProduto(int id_produto){
-       conexao.excluirProduto(id_produto);
+        ProdutoDoa produtoDao = new ProdutoDoa();
+        produtoDao.excluirProduto(id_produto);
    }
 
    

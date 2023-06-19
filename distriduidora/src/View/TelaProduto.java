@@ -171,6 +171,7 @@ public class TelaProduto extends javax.swing.JInternalFrame {
         
         produtoController = new ProdutoController();
         
+        
         DefaultTableModel model =(DefaultTableModel) tbProduto.getModel();
         model.setNumRows(0);
         
@@ -209,15 +210,23 @@ public class TelaProduto extends javax.swing.JInternalFrame {
         if(txtProdutoNome.getText().isEmpty() || txtProdutoQuant.getText().isEmpty() || txtProdutoPreco.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Preencha todos os campos");
         }else{
-            String textoInt = txtProdutoQuant.getText();
-            String textoDouble = txtProdutoPreco.getText();
+            String textoQuant = txtProdutoQuant.getText();
+            String textoPreco = txtProdutoPreco.getText();
             
              try {
                     produtoController = new ProdutoController();
-                    int numeroInt = Integer.parseInt(textoInt);
-                    double numeroDouble = Double.parseDouble(textoDouble);
                     
-                    result = produtoController.adicionarProduto(txtProdutoNome.getText(), numeroInt, numeroDouble);
+                    Produto produto = new Produto();
+                    
+   
+                    int quantP = Integer.parseInt(textoQuant);
+                    double precoP = Double.parseDouble(textoPreco);
+                    
+                    produto.setNome(txtProdutoNome.getText());
+                    produto.setQuantidade(quantP);
+                    produto.setPreco(precoP);
+                    
+                    result = produtoController.adicionarProduto(produto);
                     
                     if(result > 0){
                         JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso");
@@ -225,6 +234,7 @@ public class TelaProduto extends javax.swing.JInternalFrame {
                         txtProdutoNome.setText(null);
                         txtProdutoPreco.setText(null);
                         txtProdutoQuant.setText(null);
+                        CarregarTabela();
                          
                     }
                   
@@ -252,11 +262,20 @@ public class TelaProduto extends javax.swing.JInternalFrame {
      
             try {
                    produtoController = new ProdutoController();
-                   int numeroquantidadeInt = Integer.parseInt(textoQuantInt);
+                   Produto produto = new Produto();
+                   
+                   
                    int idInt = Integer.parseInt(textoIdInt);
-                   double numeroPrecoDouble = Double.parseDouble(textoDouble);
-
-                   result = produtoController.alterarProduto(idInt, txtProdutoNome.getText(), numeroquantidadeInt, numeroPrecoDouble);
+                   int quantidade = Integer.parseInt(textoQuantInt);
+                   double preco = Double.parseDouble(textoDouble);
+                   
+                   produto.setId_produto(idInt);
+                   produto.setNome(txtProdutoNome.getText());
+                   produto.setQuantidade(quantidade);
+                   produto.setPreco(preco);
+                   
+                   
+                   result = produtoController.alterarProduto(produto);
 
                    if(result > 0){
                        JOptionPane.showMessageDialog(null, "Produto atualizado com sucesso");

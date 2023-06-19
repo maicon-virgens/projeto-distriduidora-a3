@@ -6,6 +6,7 @@ package Controller;
 import Model.Usuario;
 //import Dao.UsuarioDao;
 import Dao.Conexao;
+import Dao.UsuarioDao;
 
 //import java.sql.Date;
 import java.sql.SQLException;
@@ -27,35 +28,35 @@ public class UsuarioController {
    public UsuarioController(){
        //usuarioDao = new UsuarioDao();
        
-       
-       conexao = new Conexao();
+      
    }
    
-   public int adicionarUsuario(String name, String email, String senha){
-     
+   public int adicionarUsuario(Usuario usuario){
+       
         int result = 0;
-        Usuario usuario = new Usuario();
-        usuario.setNome(name);
-        usuario.setEmail(email);
-        usuario.setSenha(senha);
-        result = conexao.adicionarUsuario(usuario);
+        
+        UsuarioDao usuarioDao = new UsuarioDao();
+      
+        result = usuarioDao.adicionarUsuario(usuario);
 
         return result;
        
    }
    
    public List<Usuario> listarUsuarios() throws SQLException{  
-       return conexao.listarUsuarios(); 
+       UsuarioDao usuarioDao = new UsuarioDao();
+       return usuarioDao.listarUsuarios(); 
    }
    
-   public void alterarUsuario(String idUsuario, String nome, String email){
-       
-       conexao.AlterarUsuario(idUsuario, nome, email);
+   public void alterarUsuario(Usuario usuario){
+       UsuarioDao usuarioDao = new UsuarioDao();
+       usuarioDao.AlterarUsuario(usuario);
        
    }
    
    public void deletarUsuario(String id_usuario){
-       conexao.excluirUsuario(id_usuario);
+       UsuarioDao usuarioDao = new UsuarioDao();
+       usuarioDao.excluirUsuario(id_usuario);
    }
     
 }

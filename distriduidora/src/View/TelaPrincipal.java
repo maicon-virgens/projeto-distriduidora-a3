@@ -4,8 +4,11 @@
  */
 package View;
 
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -87,6 +90,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menCad.add(menCadCli);
 
         menCadVenda.setText("Venda");
+        menCadVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menCadVendaActionPerformed(evt);
+            }
+        });
         menCad.add(menCadVenda);
 
         menCadUsuario.setText("Usuários");
@@ -194,12 +202,25 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void menCadCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menCadCliActionPerformed
           desktop.removeAll();
         
-        TelaCliente cliente = new TelaCliente();
+        TelaCliente cliente = null;
+        try {
+            cliente = new TelaCliente();
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         desktop.add(cliente).setVisible(true);
        
         
     }//GEN-LAST:event_menCadCliActionPerformed
+
+    private void menCadVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menCadVendaActionPerformed
+         desktop.removeAll();
+        
+        TelaVenda telaVenda = new TelaVenda();
+        
+        desktop.add(telaVenda).setVisible(true);
+    }//GEN-LAST:event_menCadVendaActionPerformed
 
     /**
      * @param args the command line arguments

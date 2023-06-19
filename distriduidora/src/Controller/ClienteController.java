@@ -4,6 +4,7 @@
  */
 package Controller;
 
+import Dao.ClienteDao;
 import Model.Cliente;
 import Dao.Conexao;
 import java.sql.SQLException;
@@ -21,36 +22,32 @@ public class ClienteController {
         conexao = new Conexao();
     }
     
-     public int  adicionarCliente(String nome, String cnpj, String telefone, String endereco, String email){
+     public int  adicionarCliente(Cliente cliente){
         
-        Cliente cliente = new Cliente();
+        
         int result = 0;
         
+       ClienteDao clienteDoa = new ClienteDao();
         
-        cliente.setNome(nome);
-        cliente.setCnpj(cnpj);
-        cliente.setTelefone(telefone);
-        cliente.setEndereco(endereco);
-        cliente.setEmail(email);
-        
-        
-        result = conexao.adicionarCliente(cliente);
+        result = clienteDoa.adicionarCliente(cliente);
 
         return result;
     }
      
     public List<Cliente> listarClientes() throws SQLException{  
-        return conexao.listarCliente();
+         ClienteDao clienteDoa = new ClienteDao();
+        return clienteDoa.listarCliente();
     }
     
-     public int alterarCliente(int  idCliente, String nome, String cnpj, String telefone, String endereco, String email){
-
-      return conexao.AlterarCliente(idCliente, nome, cnpj, telefone, endereco, email);
+     public int alterarCliente(Cliente cliente){
+        ClienteDao clienteDoa = new ClienteDao();
+        return clienteDoa.AlterarCliente(cliente);
 
     }
      
       public void deletarCliente(int id_cliente){
-       conexao.excluirCliente(id_cliente);
+        ClienteDao clienteDoa = new ClienteDao();
+        clienteDoa.excluirCliente(id_cliente);
    }
      
      

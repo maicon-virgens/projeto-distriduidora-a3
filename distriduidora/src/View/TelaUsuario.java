@@ -230,11 +230,18 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
         int result = 0;
         
         usuarioController = new UsuarioController();
+        Usuario usuario = new Usuario();
         
         if(txtUserNome.getText().isEmpty() || txtUserEmail.getText().isEmpty() || txtUserSenha.getText().isEmpty()){
              JOptionPane.showMessageDialog(null, "Preencha todos os campos");
         }else{
-            result = usuarioController.adicionarUsuario( txtUserNome.getText(),  txtUserEmail.getText(), txtUserSenha.getText());
+            
+            
+            usuario.setNome(txtUserNome.getText());
+            usuario.setEmail(txtUserEmail.getText());
+            usuario.setSenha(txtUserSenha.getText());
+            
+            result = usuarioController.adicionarUsuario(usuario);
         
             if(result > 0){
                 JOptionPane.showMessageDialog(null, "Usuário adicionado com sucesso");
@@ -249,13 +256,16 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnUserCriarActionPerformed
 
     private void btnUserAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserAtualizarActionPerformed
-
+         Usuario usuario = new Usuario();
         if( txtUserId.getText().isEmpty() ||txtUserNome.getText().isEmpty() || txtUserEmail.getText().isEmpty()){
              JOptionPane.showMessageDialog(null, "Preencha todos os campos");
         }else{
           // usuarioController = new UsuarioController();
-      
-            usuarioController.alterarUsuario(txtUserId.getText(), txtUserNome.getText(),  txtUserEmail.getText());
+           
+            usuario.setId_usuario(Integer.parseInt(txtUserId.getText()));
+            usuario.setNome(txtUserNome.getText());
+            usuario.setEmail(txtUserEmail.getText());
+            usuarioController.alterarUsuario(usuario);
                   
             txtUserId.setText(null);
             txtUserNome.setText(null);
@@ -285,7 +295,6 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
        
             TableModel dadosTabela = tbUser.getModel();
             
-
             String id_usuario = dadosTabela.getValueAt(linhaSelecionada, 0).toString();
             
             usuarioController.deletarUsuario(id_usuario);

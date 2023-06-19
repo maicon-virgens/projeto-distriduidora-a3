@@ -35,7 +35,7 @@ public class Login extends javax.swing.JFrame {
         
         usuarioController = new UsuarioController();
  
-        usuarioController.adicionarUsuario("maicon", "maicon@gmail.com", "123");
+        //usuarioController.adicionarUsuario("maicon", "maicon@gmail.com", "123");
       
  
        
