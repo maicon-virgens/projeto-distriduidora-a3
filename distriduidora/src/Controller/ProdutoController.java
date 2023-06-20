@@ -7,6 +7,7 @@ import Dao.Conexao;
 import Dao.ProdutoDoa;
 import Model.Produto;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -45,10 +46,23 @@ public class ProdutoController {
 
     }
     
-     public void deletarProduto(int id_produto){
+    public void deletarProduto(int id_produto){
         ProdutoDoa produtoDao = new ProdutoDoa();
         produtoDao.excluirProduto(id_produto);
-   }
+    }
+    
+    public Produto retornaProduto(int idProduto){
+        ProdutoDoa produtoDao = new ProdutoDoa();
+        return produtoDao.retornaProduto(idProduto);
+    }
+
+    public boolean alterarEstoqueProduto(ArrayList<Produto> listProduto) {
+        ProdutoDoa produtoDao = new ProdutoDoa();
+        
+        return produtoDao.alterarEstoqueProduto(listProduto);
+    }
+
+  
 
    
     

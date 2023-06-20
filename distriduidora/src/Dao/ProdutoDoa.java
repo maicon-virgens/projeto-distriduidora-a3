@@ -159,5 +159,66 @@ public class ProdutoDoa {
         }
     }
     
+        //PRODUTOS LISTAR 
+     public Produto retornaProduto(int idProduto) {
+        //List<Produto> produtos = new ArrayList<>();
+        String query = "SELECT * FROM produto where id_produto = ?"; //
+        Produto produtoR = new Produto();
+        
+        try {
+            PreparedStatement statement = conexao.prepareStatement(query);
+            statement.setInt(1, idProduto);
+            
+            ResultSet resultSet =  statement.executeQuery();
+            
+            if(resultSet.next()){
+                int id = resultSet.getInt("id_produto");
+                String nome = resultSet.getString("nome");
+                int quantidade = resultSet.getInt("quantidade");
+                double preco = resultSet.getInt("preco");
+                
+                
+                produtoR.setId_produto(id);
+                produtoR.setNome(nome);
+                produtoR.setQuantidade(quantidade);
+                produtoR.setPreco(preco);
+               
+       
+            }
+
+       } catch (SQLException e) {
+           e.printStackTrace();
+       }
+ 
+        return produtoR;
+    }
+
+    public boolean alterarEstoqueProduto(ArrayList<Produto> listProduto) {
+       
+        try {
+            
+            for (int i = 0; i < listProduto.size(); i++) {
+                String query = "UPDATE produto SET quantidade = ? WHERE id_produto = ?";
+
+                PreparedStatement preparedStatement = conexao.prepareStatement(query);
+
+                preparedStatement.setInt(1, listProduto.get(i).getQuantidade());
+
+                preparedStatement.setInt(2, listProduto.get(i).getId_produto());
+
+                preparedStatement.executeUpdate();
+                
+            }
+            
+            return true;
+
+            
+        } catch (SQLException e) {
+            System.out.println("Erro ao atualizar Produto: " + e.getMessage());
+        }
+        return true;
+       
+    }
+    
     
 }

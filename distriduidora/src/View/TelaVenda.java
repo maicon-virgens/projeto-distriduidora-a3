@@ -30,7 +30,10 @@ public class TelaVenda extends javax.swing.JInternalFrame {
     VendaController vendaController = new VendaController();
     VendaItemController vendaItemController = new VendaItemController();
     VendaItem vendaItem = new VendaItem();
+    Produto produto = new Produto();
+    ProdutoController produtoController = new ProdutoController();
     ArrayList<VendaItem> listVendaItens = new ArrayList<>();
+    ArrayList<Produto> listProduto = new ArrayList<>();
    
     /**
      * Creates new form TelaVenda
@@ -247,6 +250,8 @@ public class TelaVenda extends javax.swing.JInternalFrame {
         listVendaItens = new ArrayList<>();
         int codCliente  = Integer.parseInt(txtIdCliente.getText());
         int codVenda = 0;
+        int codProd = 0;
+        
         
         venda.setId_cliente_fk(codCliente);
         venda.setValor_total(Double.parseDouble(valorTotal.getText()));
@@ -265,17 +270,28 @@ public class TelaVenda extends javax.swing.JInternalFrame {
         int cont = tblProdutos.getRowCount();
         
         for (int i = 0; i < cont; i++) {
+            codProd = (int) tblProdutos.getValueAt(i, 0);
             vendaItem = new VendaItem();
-            vendaItem.setId_produto_fk((int) tblProdutos.getValueAt(i, 0));
+            produto = new Produto();
+            
+            vendaItem.setId_produto_fk(codProd);
             vendaItem.setId_venda_fk(codVenda);
             vendaItem.setQuantidade((int) tblProdutos.getValueAt(i, 2));
             vendaItem.setValor_venda_item((double) tblProdutos.getValueAt(i, 3)); 
+            
+            //produto -> Fazer a Subtração da quantidade vendida com a quantidade de produtos no banco de dados
+            produto.setId_produto(codProd);
+            
+            produto.setQuantidade(produtoController.retornaProduto(codProd).getQuantidade() - Integer.parseInt(tblProdutos.getValueAt(i, 2).toString()));
+            
             listVendaItens.add(vendaItem);
+            listProduto.add(produto);
         }
         
         if(vendaItemController.salvarVendaItens(listVendaItens)){
+            produtoController.alterarEstoqueProduto(listProduto);
             JOptionPane.showMessageDialog(null, "Produtos cadastrado com sucesso.");
-            limparTela();
+            //limparTela();
         }else{
             JOptionPane.showMessageDialog(null, "Erro ao cadastrar Produto.");
         }
@@ -292,6 +308,7 @@ public class TelaVenda extends javax.swing.JInternalFrame {
         valorTotal.setText(null);
 
     }
+     
     private void txtQuantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQuantActionPerformed
 
     }//GEN-LAST:event_txtQuantActionPerformed

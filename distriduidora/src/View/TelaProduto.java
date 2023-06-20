@@ -199,8 +199,6 @@ public class TelaProduto extends javax.swing.JInternalFrame {
     }
 
     
-    
-    
     private void btnProdutoCriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutoCriarActionPerformed
         //Produto produto = new Produto();
         
