@@ -291,7 +291,7 @@ public class TelaVenda extends javax.swing.JInternalFrame {
         if(vendaItemController.salvarVendaItens(listVendaItens)){
             produtoController.alterarEstoqueProduto(listProduto);
             JOptionPane.showMessageDialog(null, "Produtos cadastrado com sucesso.");
-            //limparTela();
+            limparTela();
         }else{
             JOptionPane.showMessageDialog(null, "Erro ao cadastrar Produto.");
         }
