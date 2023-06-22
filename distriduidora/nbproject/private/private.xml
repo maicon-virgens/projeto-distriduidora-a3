@@ -5,9 +5,10 @@
         <group>
             <file>file:/C:/Users/Maicon%20Virgens/Documents/GitHub/projeto-distriduidora-a3/distriduidora/src/View/TelaVenda.java</file>
             <file>file:/C:/Users/Maicon%20Virgens/Documents/GitHub/projeto-distriduidora-a3/distriduidora/src/Dao/ProdutoDoa.java</file>
-            <file>file:/C:/Users/Maicon%20Virgens/Documents/GitHub/projeto-distriduidora-a3/distriduidora/src/Model/Produto.java</file>
-            <file>file:/C:/Users/Maicon%20Virgens/Documents/GitHub/projeto-distriduidora-a3/distriduidora/src/View/TelaProduto.java</file>
+            <file>file:/C:/Users/Maicon%20Virgens/Documents/GitHub/projeto-distriduidora-a3/distriduidora/src/Controller/VendaItemController.java</file>
+            <file>file:/C:/Users/Maicon%20Virgens/Documents/GitHub/projeto-distriduidora-a3/distriduidora/src/Dao/VendaDao.java</file>
             <file>file:/C:/Users/Maicon%20Virgens/Documents/GitHub/projeto-distriduidora-a3/distriduidora/src/Dao/VendaItemDao.java</file>
+            <file>file:/C:/Users/Maicon%20Virgens/Documents/GitHub/projeto-distriduidora-a3/distriduidora/src/Controller/VendaController.java</file>
             <file>file:/C:/Users/Maicon%20Virgens/Documents/GitHub/projeto-distriduidora-a3/distriduidora/src/Controller/ProdutoController.java</file>
         </group>
     </open-files>

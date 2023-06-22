@@ -60,14 +60,7 @@ public class ClienteDao {
             System.out.println("Erro ao fechar conexão com o banco de dados: " + e.getMessage());
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
+
      //CLIENTE ADICIONAR
     public int adicionarCliente(Cliente cliente){
         int result = 0;
@@ -154,7 +147,7 @@ public class ClienteDao {
  
      }
      
-      //USUARIO  EXCLUIR
+      //Cliente   EXCLUIR
      public void excluirCliente(int id_cliente) {
         String query = "DELETE FROM cliente WHERE id_cliente = ?";
 

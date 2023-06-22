@@ -17,9 +17,7 @@ public class VendaController {
     public int cadastrarVenda(Venda vendaDados){
         VendaDao vendaDao = new VendaDao();
         
-        vendaDao.cadastrarVenda(vendaDados);
-        
-        
+   
         return vendaDao.cadastrarVenda(vendaDados);
     }
         

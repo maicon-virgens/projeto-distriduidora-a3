@@ -39,10 +39,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         Menu = new javax.swing.JMenuBar();
         menCad = new javax.swing.JMenu();
         menCadCli = new javax.swing.JMenuItem();
-        menCadVenda = new javax.swing.JMenuItem();
         menCadUsuario = new javax.swing.JMenuItem();
         opCadProduto = new javax.swing.JCheckBoxMenuItem();
-        menRel = new javax.swing.JMenu();
+        menCadVenda = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -73,7 +72,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         dataUsuario.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         dataUsuario.setText("Data");
 
-        menCad.setText("Opeções");
+        menCad.setText("Opções");
         menCad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menCadActionPerformed(evt);
@@ -88,14 +87,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         menCad.add(menCadCli);
-
-        menCadVenda.setText("Venda");
-        menCadVenda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menCadVendaActionPerformed(evt);
-            }
-        });
-        menCad.add(menCadVenda);
 
         menCadUsuario.setText("Usuários");
         menCadUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -114,10 +105,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         menCad.add(opCadProduto);
 
-        Menu.add(menCad);
+        menCadVenda.setText("Venda");
+        menCadVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menCadVendaActionPerformed(evt);
+            }
+        });
+        menCad.add(menCadVenda);
 
-        menRel.setText("Relatório");
-        Menu.add(menRel);
+        Menu.add(menCad);
 
         setJMenuBar(Menu);
 
@@ -266,7 +262,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem menCadCli;
     public static javax.swing.JMenuItem menCadUsuario;
     private javax.swing.JMenuItem menCadVenda;
-    private javax.swing.JMenu menRel;
     private javax.swing.JLabel nomeUsuario;
     private javax.swing.JCheckBoxMenuItem opCadProduto;
     // End of variables declaration//GEN-END:variables

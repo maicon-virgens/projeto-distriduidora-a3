@@ -206,7 +206,7 @@ public class TelaCliente extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Preencha todos os campos");
        }else{
            
-           ClienteController clienteController = new ClienteController();
+            ClienteController clienteController = new ClienteController();
            
             Cliente cliente = new Cliente();
         
@@ -263,16 +263,11 @@ public class TelaCliente extends javax.swing.JInternalFrame {
                         item.getEmail()       
                 });  
             });
-     
-    
-         
-  
-        
     }
     
     private void btnClienteAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClienteAtualizarActionPerformed
 
-        int result = 0;
+       int result = 0;
        
        if(txtClienteNome.getText().isEmpty() || txtClienteCnpj.getText().isEmpty()||txtClienteTelefone.getText().isEmpty() ||txtClienteEndereco.getText().isEmpty()){ 
             JOptionPane.showMessageDialog(null, "Preencha todos os campos");
@@ -317,7 +312,7 @@ public class TelaCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnClienteAtualizarActionPerformed
 
     private void btnClienteDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClienteDeleteActionPerformed
-         int linhaSelecionada = tbCliente.getSelectedRow();
+        int linhaSelecionada = tbCliente.getSelectedRow();
 
         if (linhaSelecionada != -1) {
             TableModel dadosTabela = tbCliente.getModel();
@@ -348,7 +343,7 @@ public class TelaCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnClienteDeleteActionPerformed
 
     
-        private void setarCamposUpdate(){
+    private void setarCamposUpdate(){
              // Obtém a linha selecionada
         int linhaSelecionada = tbCliente.getSelectedRow();
 
@@ -361,10 +356,7 @@ public class TelaCliente extends javax.swing.JInternalFrame {
             int columnCount = dadosTabela.getColumnCount();
 
             // Cria um array para armazenar os valores da linha selecionada
-            Object[] dadosLinha = new Object[columnCount];
-            
-         
-            
+          
             txtClienteId.setText(dadosTabela.getValueAt(linhaSelecionada, 0).toString());
             txtClienteNome.setText( dadosTabela.getValueAt(linhaSelecionada, 1).toString());
             txtClienteCnpj.setText( dadosTabela.getValueAt(linhaSelecionada, 2).toString()); 

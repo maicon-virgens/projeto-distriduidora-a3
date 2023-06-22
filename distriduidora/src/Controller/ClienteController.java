@@ -22,31 +22,34 @@ public class ClienteController {
         conexao = new Conexao();
     }
     
-     public int  adicionarCliente(Cliente cliente){
-        
-        
+    public int  adicionarCliente(Cliente cliente){
+
         int result = 0;
-        
-       ClienteDao clienteDoa = new ClienteDao();
-        
+
+        ClienteDao clienteDoa = new ClienteDao();
+
         result = clienteDoa.adicionarCliente(cliente);
 
         return result;
     }
      
     public List<Cliente> listarClientes() throws SQLException{  
-         ClienteDao clienteDoa = new ClienteDao();
+        ClienteDao clienteDoa = new ClienteDao();
         return clienteDoa.listarCliente();
     }
     
      public int alterarCliente(Cliente cliente){
+         
         ClienteDao clienteDoa = new ClienteDao();
+        
         return clienteDoa.AlterarCliente(cliente);
 
     }
      
-      public void deletarCliente(int id_cliente){
+    public void deletarCliente(int id_cliente){
+        
         ClienteDao clienteDoa = new ClienteDao();
+        
         clienteDoa.excluirCliente(id_cliente);
    }
      

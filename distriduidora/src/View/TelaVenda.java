@@ -257,7 +257,7 @@ public class TelaVenda extends javax.swing.JInternalFrame {
         venda.setValor_total(Double.parseDouble(valorTotal.getText()));
         
         codVenda = vendaController.cadastrarVenda(venda);
-        
+       // System.out.println("Passei aqui");
         
         //System.out.println("cod:" + codVenda);
         
@@ -267,9 +267,12 @@ public class TelaVenda extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Erro ao Salva Venda .");
         }
         
+        //Cadastro de Itens e Subtração da quantidade vendida com a quantidade de produtos no banco de dados
+        
         int cont = tblProdutos.getRowCount();
         
         for (int i = 0; i < cont; i++) {
+            
             codProd = (int) tblProdutos.getValueAt(i, 0);
             vendaItem = new VendaItem();
             produto = new Produto();
@@ -284,6 +287,7 @@ public class TelaVenda extends javax.swing.JInternalFrame {
             
             produto.setQuantidade(produtoController.retornaProduto(codProd).getQuantidade() - Integer.parseInt(tblProdutos.getValueAt(i, 2).toString()));
             
+            //adicionar lista
             listVendaItens.add(vendaItem);
             listProduto.add(produto);
         }
@@ -318,8 +322,7 @@ public class TelaVenda extends javax.swing.JInternalFrame {
         DefaultTableModel tabelaProduto = (DefaultTableModel) tblProdutos.getModel();
 
         Object[] novoProduto;
-        novoProduto = new Object [] {
-            
+        novoProduto = new Object [] {   
             produto.getId_produto(),
             produto.getNome(),
             quantidade,
@@ -354,17 +357,18 @@ public class TelaVenda extends javax.swing.JInternalFrame {
             Cliente cliente = new Cliente();
             Produto produto = new Produto();
             
-            ArrayList<Cliente> clienteList = new ArrayList<>();
-            ArrayList<Produto> produtoList = new ArrayList<>();
-                      
+            //pela cliente e produto selecionado caixa combinação
             cliente = (Cliente) caixaCombCliente.getSelectedItem();
             produto = (Produto) caixaCombProduto.getSelectedItem();
             
+            //setar id cliente
             txtIdCliente.setText(String.valueOf(cliente.getId_cliente()));
             
+            //pegar quantidade digitada
             int quantItem = Integer.parseInt(txtQuant.getText());
             
             txtQuant.setText(null);
+            
             CarregarTabela(produto, quantItem);   
         }
     }//GEN-LAST:event_addDadosTabActionPerformed
